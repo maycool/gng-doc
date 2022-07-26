@@ -1,8 +1,9 @@
 import "./endpoints/user";
+import "./endpoints/skills";
 import { api } from "@airtasker/spot";
 
 
 @api({
-    name: "GoalnGo"
+    name: "Goalngo"
   })
   class Api {}
