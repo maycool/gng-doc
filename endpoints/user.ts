@@ -1,5 +1,5 @@
 import { endpoint, request, response, body, Integer   } from "@airtasker/spot";
-import { BaseResponse } from "./Shared";
+
 @endpoint({
   method: "POST",
   path: "/user"
@@ -19,66 +19,90 @@ interface CreateUserRequest {
   firstName: string;
   lastName: string;
   birthDate: string;
-  gender: 'male' | 'female';
+  gender: 'MALE' | 'FEMALE';
   nationality: string;
-  countryOfResidence: string;
-  cityOfResidence: string;
-  role: 'player' | 'coach' | 'scout' | 'agent' | 'other';
+  number: string;
+  mediaUrl: string;
+  email: string;
+  countryId: number;
+  city: string;
+  role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
   // aux fields --------------------------------
   height?: Integer;
   weight?: Integer;
-  strongFoot?: 'left' | 'right' | 'both';
+  strongFoot?: 'LEFT' | 'RIGHT' | 'BOTH';
   primaryPosition?: string;
   otherPosition?: string;
+  agentId?: number;
+  parentId?: number;
   countriesCoachedIn?: Integer[];
   totalTeamsCoached?: Integer;
   preferredFormation?: string;
   locationOfScouting?: Integer[];
-  typeOfScouting: string;
+  typeOfScouting?: string;
   areasCovered?: Integer[];
-  totalCareerTransfers: Integer;
+  totalCareerTransfers?: Integer;
   // -------------------------------------------
   // form fields -------------------------------
-  cardId?: string;
-  cardValidUntil?: string;
+  cardNumber?: string;
+  cardMediaUrl?: string;
+  cardValidTo?: string;
   agencyName?: string;
   activeCountries?: Integer[];
   agencyRegisteredLocation?: string;
   officePhoneNumber?: string;
+  agencyClubId?: number;
   agencyWebsite?: string;
   agencySocialMedia?: string;
   // -------------------------------------------
-  skills?: Integer[];
+  skills?: Skill;
   connections?: Integer[];
   experience?: Experience[];
   certificates?: Certificate[];
+
+
+  scoutedPlayersIds?: Integer[];
+  agentPlayerIds?: Integer[];
 }
 
-interface CreateUserSuccessResponse extends BaseResponse{}
+interface CreateUserSuccessResponse{
+  body: {
+    message: string;
+  };
+}
 
-interface CreateUserFailureResponse extends BaseResponse{}
+interface CreateUserFailureResponse{
+  body: {
+    message: string;
+  };
+}
 
+interface Skill {
+  old: Integer[];
+  new: {name: string}[];
+}
 interface Trophy {
-  name: string;
+  title: string;
   winningYear: string;
-  mediaIds: Integer[];
+  mediaUrls?: {url: string, type: 'IMAGE' | 'VIDEO'}[];
 }
 
 interface Certificate {
   entity: string;
-  name: string;
+  title: string;
   issueDate: string;
   isExpirable: boolean;
-  expirationDate?: string;
-  credentialUrl: string;
+  expiryDate?: string;
+  url: string;
 }
 interface Experience {
   clubId: Integer;
-  isActive: boolean;
-  playingLevel?: string;
+  isCurrentlyThere: boolean;
+  playingLevel: string;
   startDate: string;
   type?: string;
-  endDate: string;
+  endDate?: string;
   playersScouted?: Integer;
+  position?: string;
   trophies?: Trophy[];
 }
