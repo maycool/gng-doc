@@ -1,37 +1,34 @@
-import { endpoint, request, response, body, Integer, headers } from "@airtasker/spot";
+import { endpoint, request, response, body, headers } from "@airtasker/spot";
 
 @endpoint({
     method: "POST",
     path: "/clubs"
 })
-class CreateClub {
+class CreateTeam {
     @request
-    request(@body body: CreateClubsRequestBody, @headers headers: CreateClubsRequestHeaders) {}
+    request(@body body: CreateTeamsRequestBody, @headers headers: CreateTeamsRequestHeaders) {}
 
     @response({ status: 200 })
-    successResponse(@body body: CreateClubsSuccessResponse) {}
+    successResponse(@body body: CreateTeamsSuccessResponse) {}
 
     @response({ status: 400 })
-    badRequestResponse(@body body: CreateClubsFailureResponse) {}
+    badRequestResponse(@body body: CreateTeamsFailureResponse) {}
 }
 
-interface CreateClubsRequestBody {
-    nameAr: string;
-    nameEn: string;
-    mediaUrl?:string;
+interface CreateTeamsRequestBody {
+    nameAr?: string;
+    nameEn?: string;
+    type?: 'national-team' | 'club';
+    mediaUrl?: string;
 }
-interface CreateClubsRequestHeaders {
+interface CreateTeamsRequestHeaders {
     "Accept-Language":string
 }
-interface CreateClubsSuccessResponse{
-    body: {
-        data: string;
-    };
+interface CreateTeamsSuccessResponse{
+    data: string;
 }
-interface CreateClubsFailureResponse{
-    body: {
-        data: string;
-    };
+interface CreateTeamsFailureResponse{
+    data: string;
 }
 
 
@@ -39,34 +36,35 @@ interface CreateClubsFailureResponse{
     method: "GET",
     path: "/clubs"
 })
-class ListClubs {
+class ListTeams {
     @request
-    request(@headers headers: ListClubsRequest) {}
+    request(@headers headers: ListTeamsRequest) {}
 
     @response({ status: 200 })
-    successResponse(@body body: ListClubsSuccessResponse) {}
+    successResponse(@body body: ListTeamsSuccessResponse) {}
 
     @response({ status: 400 })
-    badRequestResponse(@body body: ListClubsFailureResponse) {}
+    badRequestResponse(@body body: ListTeamsFailureResponse) {}
 }
 
-interface ListClubsRequest {
+interface TeamsData {
+    id: number;
+    name: string;
+    type: 'NATIONAL'|'CLUB';
+    countryId: number;
+    status: 'PENDING'|'APPROVED';
+    url: string;
+}
+
+interface ListTeamsRequest {
     "Accept-Language":string
 }
-interface ListClubsSuccessResponse{
-    body: {
-        message: string;
-        data: {
-            id:number;
-            name:string;
-            url:string;
-        };
-    };
+interface ListTeamsSuccessResponse{
+    message: string;
+    data: TeamsData[];
 }
-interface ListClubsFailureResponse{
-    body: {
-        message: string;
-    };
+interface ListTeamsFailureResponse{
+    message: string;
 }
 
 
@@ -74,18 +72,22 @@ interface ListClubsFailureResponse{
     method: "GET",
     path: "/clubs/{id}"
 })
-class GetClub {
+class GetTeam {
     @request
-    request(@headers headers: GetClubRequest) {}
+    request(@headers headers: GetTeamRequest) {}
 
     @response({ status: 200 })
-    successResponse(@body body: ListClubsSuccessResponse) {}
+    successResponse(@body body: GetTeamSuccessResponse) {}
 
     @response({ status: 400 })
-    badRequestResponse(@body body: ListClubsFailureResponse) {}
+    badRequestResponse(@body body: ListTeamsFailureResponse) {}
 }
-interface GetClubRequest {
+interface GetTeamRequest {
     "Accept-Language":string;
+}
+interface GetTeamSuccessResponse{
+    message: string;
+    data: TeamsData;
 }
 
 
@@ -93,37 +95,34 @@ interface GetClubRequest {
     method: "PATCH",
     path: "/clubs/{id}"
 })
-class EditClub {
+class EditTeam {
     @request
-    request(@body body: EditClubRequestBody, @headers headers: EditClubRequestHeader) {}
+    request(@body body: EditTeamRequestBody, @headers headers: EditTeamRequestHeader) {}
 
     @response({ status: 200 })
-    successResponse(@body body: EditClubSuccessResponse) {}
+    successResponse(@body body: EditTeamSuccessResponse) {}
 
     @response({ status: 400 })
-    badRequestResponse(@body body: EditClubFailureResponse) {}
+    badRequestResponse(@body body: EditTeamFailureResponse) {}
 }
 
-interface EditClubRequestHeader {
+interface EditTeamRequestHeader {
     "Accept-Language":string;
 }
-interface EditClubRequestBody {
-    body: {
-        nameAr?: string;
-        nameEn?: string;
-        mediaUrl?: string;
-    };
+interface EditTeamRequestBody {
+    id: number;
+    name: string;
+    type: 'NATIONAL'|'CLUB';
+    countryId: number;
+    status: 'PENDING'|'APPROVED';
+    url: string;
 }
-interface EditClubSuccessResponse{
-    body: {
-        data: string;
-    };
+interface EditTeamSuccessResponse{
+    data: string;
 }
 
-interface EditClubFailureResponse{
-    body: {
-        data: string;
-    };
+interface EditTeamFailureResponse{
+    data: string;
 }
 
 
@@ -132,28 +131,24 @@ interface EditClubFailureResponse{
     method: "DELETE",
     path: "/clubs/{id}"
 })
-class DeleteClub {
+class DeleteTeam {
     @request
-    request(@headers headers:DeleteClubRequest) {}
+    request(@headers headers:DeleteTeamRequest) {}
 
     @response({ status: 200 })
-    successResponse(@body body: DeleteClubSuccessResponse) {}
+    successResponse(@body body: DeleteTeamSuccessResponse) {}
 
     @response({ status: 400 })
-    badRequestResponse(@body body: DeleteClubFailureResponse) {}
+    badRequestResponse(@body body: DeleteTeamFailureResponse) {}
 }
 
-interface DeleteClubRequest{
+interface DeleteTeamRequest{
     "Accept-Language":string
 }
-interface DeleteClubSuccessResponse{
-    body: {
-        message: string;
-    };
+interface DeleteTeamSuccessResponse{
+    message: string;
 }
 
-interface DeleteClubFailureResponse{
-    body: {
-        message: string;
-    };
+interface DeleteTeamFailureResponse{
+    message: string;
 }
