@@ -5,6 +5,8 @@ import { endpoint, request, response, body, Integer   } from "@airtasker/spot";
   path: "/users"
 })
 class GetUser {
+  @request
+  request(@body body: GetUserPathParams) {}
 
   @response({ status: 200 })
   successResponse(@body body: GetUserSuccessResponse) {}
@@ -13,6 +15,11 @@ class GetUser {
   badRequestResponse(@body body: GetUserFailureResponse) {}
 }
 
+interface GetUserPathParams {
+  role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
+  offset: Integer;
+  limit: Integer;
+}
 interface UserData {
   id: Integer;
   firstName: string;
