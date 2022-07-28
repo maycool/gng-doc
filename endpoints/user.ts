@@ -16,6 +16,7 @@ class GetUser {
 }
 
 interface GetUserPathParams {
+  firstName?: string;
   role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
   offset: Integer;
   limit: Integer;
