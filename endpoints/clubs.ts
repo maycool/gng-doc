@@ -1,4 +1,4 @@
-import { endpoint, request, response, body, headers } from "@airtasker/spot";
+import { endpoint, request, response, body, headers, queryParams } from "@airtasker/spot";
 
 @endpoint({
     method: "POST",
@@ -38,7 +38,7 @@ interface CreateTeamsFailureResponse{
 })
 class ListTeams {
     @request
-    request(@headers headers: ListTeamsRequest) {}
+    request(@headers headers: ListTeamsRequest, @queryParams queryParams: ListClubsPathParams) {}
 
     @response({ status: 200 })
     successResponse(@body body: ListTeamsSuccessResponse) {}
@@ -54,6 +54,10 @@ interface TeamsData {
     countryId: number;
     status: 'PENDING'|'APPROVED';
     url: string;
+}
+
+interface ListClubsPathParams {
+    name?: string;
 }
 
 interface ListTeamsRequest {
@@ -111,11 +115,11 @@ interface EditTeamRequestHeader {
 }
 interface EditTeamRequestBody {
     id: number;
-    name: string;
-    type: 'NATIONAL'|'CLUB';
-    countryId: number;
-    status: 'PENDING'|'APPROVED';
-    url: string;
+    name?: string;
+    type?: 'NATIONAL'|'CLUB';
+    countryId?: number;
+    status?: 'PENDING'|'APPROVED';
+    url?: string;
 }
 interface EditTeamSuccessResponse{
     data: string;
