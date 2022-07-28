@@ -1,8 +1,53 @@
 import { endpoint, request, response, body, Integer   } from "@airtasker/spot";
 
 @endpoint({
+  method: "GET",
+  path: "/users"
+})
+class GetUser {
+
+  @response({ status: 200 })
+  successResponse(@body body: GetUserSuccessResponse) {}
+
+  @response({ status: 400 })
+  badRequestResponse(@body body: GetUserFailureResponse) {}
+}
+
+interface UserData {
+  id: Integer;
+  firstName: string;
+  lastName: string;
+  bio?: string;
+  gender: 'MALE' | 'FEMALE',
+  city: string;
+  role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
+  agentId?: Integer;
+  agentStatus?: string;
+  parentId?:Integer;
+  parentStatus?: string;
+  status?: string;
+  nationality: string;
+  media: { id?: Integer, url?: string }
+  team: { id?: Integer, name?: string }
+  country: { id: Integer, url: string, name: string }
+
+}
+interface GetUserSuccessResponse{
+  body: {
+    data: UserData[];
+    message: string;
+  };
+}
+
+interface GetUserFailureResponse{
+  body: {
+    message: string;
+  };
+}
+
+@endpoint({
   method: "POST",
-  path: "/user"
+  path: "/users"
 })
 class CreateUser {
   @request
