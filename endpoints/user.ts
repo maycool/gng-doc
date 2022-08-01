@@ -23,20 +23,8 @@ interface ListUsersParams {
    * 
    * Other : Gives verified other types
    * 
-   * Coaches: Gives verified coaches
-   * 
-   * Players: Gives verified players
-   * 
-   * Scouts: Gives verified scouts
-   * 
-   * All: Gives all users verified
-   * 
-   * Friends: Gives all friends
-   * 
-   * Similar: Gives verified users with similar role
-   * 
    */
-  type: 'AGENT' | 'OTHER' | 'COACH' | 'PLAYER' | 'SCOUT' | 'FRIEND' | 'SIMILAR' | 'ALL';
+  type: 'AGENT' | 'OTHER';
 }
 interface UserData {
   id: Integer;
