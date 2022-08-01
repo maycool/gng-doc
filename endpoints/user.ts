@@ -1,10 +1,13 @@
-import { endpoint, request, response, body, Integer   } from "@airtasker/spot";
+import { endpoint, request, response, body, Integer, headers, queryParams  } from "@airtasker/spot";
 
 @endpoint({
   method: "GET",
-  path: "/users?limit=10&offset=1&firstName='abc'&lastName='def'",
+  path: "/users",
 })
 class GetUser {
+  @request
+  request(@queryParams queryParams: ListUsersParams) {}
+
   @response({ status: 200 })
   successResponse(@body body: GetUserSuccessResponse) {}
 
@@ -12,6 +15,29 @@ class GetUser {
   badRequestResponse(@body body: GetUserFailureResponse) {}
 }
 
+interface ListUsersParams {
+  limit: Integer;
+  offset: Integer;
+  /** 
+   * Agents: Gives verified agents
+   * 
+   * Other : Gives verified other types
+   * 
+   * Coaches: Gives verified coaches
+   * 
+   * Players: Gives verified players
+   * 
+   * Scouts: Gives verified scouts
+   * 
+   * All: Gives all users verified
+   * 
+   * Friends: Gives all friends
+   * 
+   * Similar: Gives verified users with similar role
+   * 
+   */
+  type: 'AGENTS' | 'OTHER' | 'COACHES' | 'PLAYERS' | 'SCOUTS' | 'FRIENDS' | 'SIMILAR' | 'ALL';
+}
 interface UserData {
   id: Integer;
   firstName: string;
