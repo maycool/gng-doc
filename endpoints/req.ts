@@ -132,7 +132,7 @@ interface DeclineRequestSuccessResponse {
 
 interface DeclineRequestFailureResponse {
     message: string
-}
+}   
 
 
 @endpoint({
