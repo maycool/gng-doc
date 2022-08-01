@@ -36,7 +36,7 @@ interface ListUsersParams {
    * Similar: Gives verified users with similar role
    * 
    */
-  type: 'AGENTS' | 'OTHER' | 'COACHES' | 'PLAYERS' | 'SCOUTS' | 'FRIENDS' | 'SIMILAR' | 'ALL';
+  type: 'AGENT' | 'OTHER' | 'COACH' | 'PLAYER' | 'SCOUT' | 'FRIEND' | 'SIMILAR' | 'ALL';
 }
 interface UserData {
   id: Integer;
