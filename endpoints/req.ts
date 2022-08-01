@@ -6,7 +6,7 @@ import { endpoint, request, response, body, headers, queryParams } from "@airtas
 })
 class CreateRequest {
     @request
-    request(@headers headers: CreateRequestHeaders) {}
+    request(@headers headers: CreateRequestHeaders, @body body: CreateRequestBody) {}
 
     @response({ status: 200 })
     successResponse(@body body: CreateRequestSuccessResponse) {}
@@ -17,6 +17,10 @@ class CreateRequest {
 
 interface CreateRequestHeaders {
     "Accept-Language":string
+}
+
+interface CreateRequestBody {
+    "type": 'FRIEND' | 'AGENT' | 'PARENT' | 'SCOUT';
 }
 
 interface CreateRequestSuccessResponse {
@@ -35,7 +39,7 @@ interface CreateRequestFailureResponse {
     method: "GET",
     path: "/users/{id}/requests/"
 })
-class getAllRequests {
+class getPendingRequests {
     @request
     request(@headers headers: GetRequestHeaders, @queryParams queryParams: GetRequrestParam) {}
 
@@ -51,8 +55,8 @@ interface GetRequestHeaders {
 }
 
 interface GetRequrestParam {
-    limit: string;
-    offset: string;
+    limit: number;
+    offset: number;
 }
 
 interface GetRequestSuccessResponse {
@@ -69,15 +73,16 @@ interface DataContent {
     user:{
         firstName:string;
         lastName:string;
-        mediaUrl:string;
-        clubName:string;
+        mediaUrl?:string;
+        teamName?:string;
     }
     createdAt:string;
+    status:string;
 }
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}"
+    path: "/requests/{id}/accept"
 })
 class AcceptRequest {
     @request
@@ -103,8 +108,8 @@ interface AcceptRequestFailureResponse {
 }
 
 @endpoint({
-    method: "DELETE",
-    path: "/requests/{id}"
+    method: "PATCH",
+    path: "/requests/{id}/decline"
 })
 class DeclineRequest {
     @request
@@ -126,5 +131,33 @@ interface DeclineRequestSuccessResponse {
 }
 
 interface DeclineRequestFailureResponse {
+    message: string
+}
+
+
+@endpoint({
+    method: "PATCH",
+    path: "/requests/{friendId}/unfriend"
+})
+class UnFriendRequest {
+    @request
+    request(@headers headers: UnFriendRequestHeaders) {}
+
+    @response({ status: 200 })
+    successResponse(@body body: UnFriendRequestSuccessResponse) {}
+
+    @response({ status: 400 })
+    badRequestResponse(@body body: UnFriendRequestFailureResponse) {}
+}
+
+interface UnFriendRequestHeaders {
+    "Accept-Language":string
+}
+
+interface UnFriendRequestSuccessResponse {
+    message:string
+}
+
+interface UnFriendRequestFailureResponse {
     message: string
 }
