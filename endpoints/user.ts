@@ -16,15 +16,11 @@ class GetUser {
 }
 
 interface ListUsersParams {
+  role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'OTHER' | 'AGENT';
+  firstName?: string;
+  lastName?: string;
   limit: Integer;
   offset: Integer;
-  /** 
-   * Agents: Gives verified agents
-   * 
-   * Other : Gives verified other types
-   * 
-   */
-  type: 'AGENT' | 'OTHER';
 }
 interface UserData {
   id: Integer;
