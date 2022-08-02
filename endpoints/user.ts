@@ -2,6 +2,20 @@ import { endpoint, request, response, body, Integer, headers, queryParams  } fro
 
 @endpoint({
   method: "GET",
+  path: "/users/network",
+})
+class GetUserNetwork {
+  @request
+  request(@queryParams queryParams: ListUsersParams) {}
+
+  @response({ status: 200 })
+  successResponse(@body body: GetUserSuccessResponse) {}
+
+  @response({ status: 400 })
+  badRequestResponse(@body body: GetUserFailureResponse) {}
+}
+@endpoint({
+  method: "GET",
   path: "/users",
 })
 class GetUser {
