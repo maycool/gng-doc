@@ -63,16 +63,13 @@ interface UserData {
 
 }
 interface GetUserSuccessResponse{
-  body: {
     data: UserData[];
     message: string;
-  };
+
 }
 
 interface GetUserFailureResponse{
-  body: {
     message: string;
-  };
 }
 
 @endpoint({
@@ -145,15 +142,11 @@ interface CreateUserRequest {
 }
 
 interface CreateUserSuccessResponse{
-  body: {
     message: string;
-  };
 }
 
 interface CreateUserFailureResponse{
-  body: {
     message: string;
-  };
 }
 
 interface Skill {

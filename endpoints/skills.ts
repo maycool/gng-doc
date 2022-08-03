@@ -22,21 +22,17 @@ interface CreateSkillRequest {
 }
 
 interface CreateSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface CreateSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
 
 
 @endpoint({
     method: "GET",
-    path: "/skills"
+    path: "/skills?limit=10&offset=0&status=approved&role=player&name=football"
 })
 class ListSkill {
     @request
@@ -53,23 +49,17 @@ interface ListSkillRequest {
     id: number;
     role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
     status: 'APPROVED' | 'PENDING';
-    names: Name[];
+    name:string;
+    lang: 'EN' | 'AR'
 }
 
-interface Name {
-    name: string;
-    lang: 'AR' | 'EN';
-}
+
 interface ListSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface ListSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
 
 
@@ -96,15 +86,11 @@ interface EditSkillRequest {
 }
 
 interface EditSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface EditSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
 
 
@@ -123,13 +109,9 @@ class DeleteSkill {
 }
 
 interface DeleteSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface DeleteSkillFailureResponse{
-    body: {
         message: string;
-    };
 }

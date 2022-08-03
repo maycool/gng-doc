@@ -1,4 +1,4 @@
-import { endpoint, request, response, body, headers, queryParams } from "@airtasker/spot";
+import { endpoint, request, response, body, headers, queryParams, Integer } from "@airtasker/spot";
 
 @endpoint({
     method: "POST",
@@ -71,13 +71,38 @@ interface GetRequestFailureResponse {
 interface DataContent {
     id: number;
     user:{
-        firstName:string;
-        lastName:string;
-        mediaUrl?:string;
-        teamName?:string;
+        firstName: string;
+        lastName: string;
+        birthDate: string;
+        gender: 'MALE' | 'FEMALE';
+        nationalityId: number;
+        number: string;
+        media: { id?: Integer, url?: string }
+        team: { id?: Integer, name?: string }
+        country: { id: Integer, url: string, name: string }
+        email: string;
+        city: string;
+        role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
+        height?: Integer;
+        weight?: Integer;
+        strongFoot?: 'LEFT' | 'RIGHT' | 'BOTH';
+        primaryPosition?: string;
+        otherPosition?: string;
+        countriesCoachedIn?: DataObject[];
+        totalTeamsCoached?: Integer;
+        preferredFormation?: string;
+        locationOfScouting?: DataObject[];
+        typeOfScouting?: string;
+        areasCovered?: DataObject[];
+        totalCareerTransfers?: Integer;
     }
     createdAt:string;
     status:string;
+}
+
+interface DataObject {
+    id?: Integer;
+    name?: string;
 }
 
 @endpoint({
@@ -133,6 +158,35 @@ interface DeclineRequestSuccessResponse {
 interface DeclineRequestFailureResponse {
     message: string
 }   
+
+
+@endpoint({
+    method: "PATCH",
+    path: "/requests/{id}/cancel"
+})
+class CancelRequest {
+    @request
+    request(@headers headers: CancelRequestHeaders) {}
+
+    @response({ status: 200 })
+    successResponse(@body body: CancelRequestSuccessResponse) {}
+
+    @response({ status: 400 })
+    badRequestResponse(@body body: CancelRequestFailureResponse) {}
+}
+
+interface CancelRequestHeaders {
+    "Accept-Language":string
+}
+
+interface CancelRequestSuccessResponse {
+    message:string
+}
+
+interface CancelRequestFailureResponse {
+    message: string
+}   
+
 
 
 @endpoint({
