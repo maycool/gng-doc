@@ -2,7 +2,8 @@ import { endpoint, request, response, body, headers, queryParams } from "@airtas
 
 @endpoint({
     method: "POST",
-    path: "/clubs"
+    path: "/clubs",
+    tags: ["Teams"]
 })
 class CreateTeam {
     @request
@@ -34,7 +35,8 @@ interface CreateTeamsFailureResponse{
 
 @endpoint({
     method: "GET",
-    path: "/clubs"
+    path: "/clubs",
+    tags: ["Teams"]
 })
 class ListTeams {
     @request
@@ -74,7 +76,8 @@ interface ListTeamsFailureResponse{
 
 @endpoint({
     method: "GET",
-    path: "/clubs/{id}"
+    path: "/clubs/{id}",
+    tags: ["Teams"]
 })
 class GetTeam {
     @request
@@ -97,7 +100,8 @@ interface GetTeamSuccessResponse{
 
 @endpoint({
     method: "PATCH",
-    path: "/clubs/{id}"
+    path: "/clubs/{id}",
+    tags: ["Teams"]
 })
 class EditTeam {
     @request
@@ -133,7 +137,8 @@ interface EditTeamFailureResponse{
 
 @endpoint({
     method: "DELETE",
-    path: "/clubs/{id}"
+    path: "/clubs/{id}",
+    tags: ["Teams"]
 })
 class DeleteTeam {
     @request

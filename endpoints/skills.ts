@@ -2,7 +2,8 @@ import { endpoint, request, response, body, Integer   } from "@airtasker/spot";
 
 @endpoint({
     method: "POST",
-    path: "/skills"
+    path: "/skills",
+    tags: ["Skills"]
 })
 class CreateSkill {
     @request
@@ -32,7 +33,8 @@ interface CreateSkillFailureResponse{
 
 @endpoint({
     method: "GET",
-    path: "/skills?limit=10&offset=0&status=approved&role=player&name=football"
+    path: "/skills?limit=10&offset=0&status=approved&role=player&name=football",
+    tags: ["Skills"]
 })
 class ListSkill {
     @request
@@ -65,7 +67,8 @@ interface ListSkillFailureResponse{
 
 @endpoint({
     method: "PATCH",
-    path: "/skills/{id}"
+    path: "/skills/{id}",
+    tags: ["Skills"]
 })
 class EditSkill {
     @request
@@ -97,7 +100,8 @@ interface EditSkillFailureResponse{
 
 @endpoint({
     method: "DELETE",
-    path: "/skills/{id}"
+    path: "/skills/{id}",
+    tags: ["Skills"]
 })
 class DeleteSkill {
 

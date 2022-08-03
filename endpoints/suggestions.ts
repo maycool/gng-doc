@@ -2,7 +2,8 @@ import {endpoint, request, response, body, headers, queryParams, Integer} from "
 
 @endpoint({
     method: "GET",
-    path: "/users/suggestions?role=player"
+    path: "/users/suggestions?role=player",
+    tags: ["Suggestions"]
 })
 class getSuggestions {
     @request

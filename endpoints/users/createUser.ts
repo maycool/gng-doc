@@ -1,90 +1,5 @@
 import { endpoint, request, response, body, Integer, headers, queryParams  } from "@airtasker/spot";
 
-/** The list returns all user statuses even rejected */
-@endpoint({
-  method: "GET",
-  path: "/users/network",
-})
-class GetUserNetwork {
-  @request
-  request(@queryParams queryParams: ListNetwork) {}
-
-  @response({ status: 200 })
-  successResponse(@body body: GetUserSuccessResponse) {}
-
-  @response({ status: 400 })
-  badRequestResponse(@body body: GetUserFailureResponse) {}
-}
-interface ListNetwork {
-  role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'OTHER' | 'AGENT';
-  name?: string;
-  limit: Integer;
-  offset: Integer;
-}
-
-
-
-
-
-@endpoint({
-  method: "GET",
-  path: "/users",
-})
-class GetUser {
-  @request
-  request(@queryParams queryParams: ListUsersParams) {}
-
-  @response({ status: 200 })
-  successResponse(@body body: GetUserSuccessResponse) {}
-
-  @response({ status: 400 })
-  badRequestResponse(@body body: GetUserFailureResponse) {}
-}
-
-interface ListUsersParams {
-  role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'OTHER' | 'AGENT';
-  name?: string;
-  /** If set to true returns only verified users, if set to false returns unverified, verified, pending users and discards rejected */
-  isVerified?: boolean;
-  limit: Integer;
-  offset: Integer;
-}
-interface UserData {
-  id: Integer;
-  firstName: string;
-  lastName: string;
-  bio?: string;
-  gender: 'MALE' | 'FEMALE',
-  city: string;
-  role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
-  status?: string;
-  nationality: string;
-  /** The additional properties differs from role to another
-   * For example this is for the player role
-   */
-  height?: Integer,
-  weight?: Integer,
-  strongFoot?: string,
-  otherPosition?: string,
-  /** End of additional properties */
-  primaryPosition?: string,
-  media: { id?: Integer, url?: string }
-  team: { id?: Integer, name?: string }
-  country: { id: Integer, url: string, name: string }
-  parent: { id: Integer, firstName: string, lastName: string, status: string, url: string }
-  agent: { id: Integer, firstName: string, lastName: string, status: string, url: string }
-
-}
-interface GetUserSuccessResponse{
-    data: UserData[];
-    message: string;
-
-}
-
-interface GetUserFailureResponse{
-    message: string;
-}
-
 @endpoint({
   method: "POST",
   path: "/users"
@@ -94,7 +9,7 @@ class CreateUser {
   request(@body body: CreateUserRequest) {}
 
   @response({ status: 200 })
-  successResponse(@body body: CreateUserSuccessResponse) {}
+  successResponse(@body body: CreateUserSuccessResponse ) {}
 
   @response({ status: 400 })
   badRequestResponse(@body body: CreateUserFailureResponse) {}

@@ -2,7 +2,8 @@ import { endpoint, request, response, body, headers, queryParams, Integer } from
 
 @endpoint({
     method: "POST",
-    path: "/users/{toId}/requests/"
+    path: "/users/{toId}/requests/",
+    tags: ["Requests"]
 })
 class CreateRequest {
     @request
@@ -37,7 +38,8 @@ interface CreateRequestFailureResponse {
 
 @endpoint({
     method: "GET",
-    path: "/users/{id}/requests/"
+    path: "/users/{id}/requests/",
+    tags: ["Requests"]
 })
 class getPendingRequests {
     @request
@@ -107,7 +109,8 @@ interface DataObject {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}/accept"
+    path: "/requests/{id}/accept",
+    tags: ["Requests"]
 })
 class AcceptRequest {
     @request
@@ -134,7 +137,8 @@ interface AcceptRequestFailureResponse {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}/decline"
+    path: "/requests/{id}/decline",
+    tags: ["Requests"]
 })
 class DeclineRequest {
     @request
@@ -162,7 +166,8 @@ interface DeclineRequestFailureResponse {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}/cancel"
+    path: "/requests/{id}/cancel",
+    tags: ["Requests"]
 })
 class CancelRequest {
     @request
@@ -191,7 +196,8 @@ interface CancelRequestFailureResponse {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{friendId}/unfriend"
+    path: "/requests/{friendId}/unfriend",
+    tags: ["Requests"]
 })
 class UnFriendRequest {
     @request

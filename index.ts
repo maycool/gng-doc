@@ -1,4 +1,4 @@
-import "./endpoints/user";
+import "./endpoints/users/index";
 import "./endpoints/skills";
 import "./endpoints/teams";
 import "./endpoints/req";
