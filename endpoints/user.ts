@@ -93,9 +93,11 @@ class CreateUser {
 interface CreateUserRequest {
   firstName: string;
   lastName: string;
+  /** FORMAT MMMM DD, YYYY */
   birthDate: string;
   gender: 'MALE' | 'FEMALE';
   nationalityId: number;
+   /** Regex accepts a '+' then a series of digits of min length 6 and max length 20 */
   number: string;
   mediaUrl: string;
   email: string;
@@ -108,8 +110,10 @@ interface CreateUserRequest {
   height?: Integer;
   weight?: Integer;
   strongFoot?: 'LEFT' | 'RIGHT' | 'BOTH';
-  primaryPosition?: string;
-  otherPosition?: string;
+  primaryPosition?: 'Goalkeeper (GK)' | 'Left Back (LB)' | 'Center Back (CB)' | 'Sweeper (SW)' | 'Right Back (RB)' | 'Left Midfielder (LMF)' | 'Center Midfielder (CMF)' |
+ 'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CW)' | 'Right Winger (RW)' | 'Striker (ST)'
+  otherPosition?: 'Goalkeeper (GK)' | 'Left Back (LB)' | 'Center Back (CB)' | 'Sweeper (SW)' | 'Right Back (RB)' | 'Left Midfielder (LMF)' | 'Center Midfielder (CMF)' |
+  'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CW)' | 'Right Winger (RW)' | 'Striker (ST)';
   countriesCoachedIn?: Integer[];
   totalTeamsCoached?: Integer;
   preferredFormation?: string;
@@ -173,11 +177,13 @@ interface Certificate {
 interface Experience {
   teamId: Integer;
   isCurrentlyThere: boolean;
-  playingLevel: string;
+  playingLevel?: string;
   startDate: string;
   type?: string;
   endDate?: string;
   playersScouted?: Integer;
+  matches: Integer;
+  goals: Integer;
   position?: string;
   trophies?: Trophy[];
 }
