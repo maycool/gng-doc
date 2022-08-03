@@ -137,6 +137,35 @@ interface DeclineRequestFailureResponse {
 
 @endpoint({
     method: "PATCH",
+    path: "/requests/{id}/cancel"
+})
+class CancelRequest {
+    @request
+    request(@headers headers: CancelRequestHeaders) {}
+
+    @response({ status: 200 })
+    successResponse(@body body: CancelRequestSuccessResponse) {}
+
+    @response({ status: 400 })
+    badRequestResponse(@body body: CancelRequestFailureResponse) {}
+}
+
+interface CancelRequestHeaders {
+    "Accept-Language":string
+}
+
+interface CancelRequestSuccessResponse {
+    message:string
+}
+
+interface CancelRequestFailureResponse {
+    message: string
+}   
+
+
+
+@endpoint({
+    method: "PATCH",
     path: "/requests/{friendId}/unfriend"
 })
 class UnFriendRequest {
