@@ -1,7 +1,7 @@
 import {endpoint, request, response, body, headers, queryParams, Integer} from "@airtasker/spot";
 
 @endpoint({
-    method: "POST",
+    method: "GET",
     path: "/users/suggestions?role=player"
 })
 class getSuggestions {

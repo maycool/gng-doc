@@ -22,15 +22,11 @@ interface CreateSkillRequest {
 }
 
 interface CreateSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface CreateSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
 
 
@@ -59,15 +55,11 @@ interface ListSkillRequest {
 
 
 interface ListSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface ListSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
 
 
@@ -94,15 +86,11 @@ interface EditSkillRequest {
 }
 
 interface EditSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface EditSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
 
 
@@ -121,13 +109,9 @@ class DeleteSkill {
 }
 
 interface DeleteSkillSuccessResponse{
-    body: {
         message: string;
-    };
 }
 
 interface DeleteSkillFailureResponse{
-    body: {
         message: string;
-    };
 }
