@@ -7,7 +7,7 @@ import { endpoint, request, response, body, Integer, headers, queryParams, pathP
   class PatchUsers {
     @request
     request(@body body: PatchUserRequest, @pathParams pathParams: {
-        id: number;
+        id: Integer;
       }) {}
   
        /** Response models */

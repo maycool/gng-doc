@@ -113,6 +113,10 @@ import {  Integer} from "@airtasker/spot";
         country: Country;
     }
 
+export interface ProfileResponseSuccess{
+    data: Player | Coach | Agent | Scout | Other;
+    message: string;
+}
 export interface ListUsersResponseSuccess{
     data: Player[] | Coach[] | Agent[] | Scout[] | Other[];
     message: string;
