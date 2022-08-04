@@ -1,3 +1,3 @@
 import './getNetwork';
-import './ListUsers';
+import './listUsers';
 import './createUser';
