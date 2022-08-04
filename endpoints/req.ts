@@ -62,8 +62,11 @@ interface GetRequrestParam {
 }
 
 interface GetRequestSuccessResponse {
-    data: DataContent[];
-    message:string
+    data: {
+        sent: DataContent[];
+        received: DataContent[];
+    };
+    message: string;
 }
 
 interface GetRequestFailureResponse {
@@ -71,7 +74,7 @@ interface GetRequestFailureResponse {
 }
 
 interface DataContent {
-    id: number;
+    requestId: number;
     user:{
         firstName: string;
         lastName: string;
