@@ -12,7 +12,7 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
   
        /** Response models */
        @response({ status: 200 })
-       ScoutResponse(@body body: ListUsersResponseSuccess) {}
+       Response(@body body: ListUsersResponseSuccess) {}
    
        @response({ status: 400 })
        badRequestResponse(@body body: ListUsersResponseFail) {}
@@ -24,6 +24,8 @@ interface ListUsersParams {
     name?: string;
     /** If set to true returns only verified users, if set to false returns unverified, verified, pending users and discards rejected */
     isVerified?: boolean;
+    /** A flag to get the rejected users with the returned set */
+    getRejected?: boolean;
     limit: Integer;
     offset: Integer;
 }

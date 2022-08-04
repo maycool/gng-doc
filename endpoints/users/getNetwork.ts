@@ -13,7 +13,7 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
 
     /** Response models */
     @response({ status: 200 })
-    ScoutResponse(@body body: ListUsersResponseSuccess) {}
+    Response(@body body: ListUsersResponseSuccess) {}
 
     @response({ status: 400 })
     badRequestResponse(@body body: ListUsersResponseFail) {}

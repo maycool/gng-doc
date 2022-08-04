@@ -2,7 +2,8 @@ import { endpoint, request, response, body, Integer, headers, queryParams  } fro
 
 @endpoint({
   method: "POST",
-  path: "/users"
+  path: "/users",
+  tags: ["Users"]
 })
 class CreateUser {
   @request
