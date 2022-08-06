@@ -1,4 +1,4 @@
-import { endpoint, request, response, body, headers, queryParams } from "@airtasker/spot";
+import { endpoint, request, response, body, headers, queryParams, Integer } from "@airtasker/spot";
 
 @endpoint({
     method: "POST",
@@ -19,8 +19,10 @@ class CreateTeam {
 interface CreateTeamsRequestBody {
     nameAr?: string;
     nameEn?: string;
-    type?: 'national-team' | 'club';
+    type?: 'NATIONAL' | 'CLUB';
+    status?: 'PENDING' | 'APPROVED'; 
     mediaUrl?: string;
+    countryId: Integer;
 }
 interface CreateTeamsRequestHeaders {
     "Accept-Language":string
@@ -54,12 +56,16 @@ interface TeamsData {
     name: string;
     type: 'NATIONAL'|'CLUB';
     countryId: number;
+    countryName: string;
     status: 'PENDING'|'APPROVED';
     url: string;
 }
 
 interface ListClubsPathParams {
     name?: string;
+    status?: string;
+    type?: string;
+    countryId?: Integer;
 }
 
 interface ListTeamsRequest {
