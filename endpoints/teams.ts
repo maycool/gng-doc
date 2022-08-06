@@ -123,7 +123,7 @@ interface EditTeamRequestBody {
     type?: 'NATIONAL'|'CLUB';
     countryId?: number;
     status?: 'PENDING'|'APPROVED';
-    url?: string;
+    mediaUrl?: string;
 }
 interface EditTeamSuccessResponse{
     data: string;
