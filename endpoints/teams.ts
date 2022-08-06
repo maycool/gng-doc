@@ -118,7 +118,6 @@ interface EditTeamRequestHeader {
     "Accept-Language":string;
 }
 interface EditTeamRequestBody {
-    id: number;
     name?: string;
     type?: 'NATIONAL'|'CLUB';
     countryId?: number;
