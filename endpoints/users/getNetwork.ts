@@ -20,6 +20,8 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
     @response({ status: 400 })
     badRequestResponse(@body body: ListUsersResponseFail) {}
   }
+
+/** Gets my network  */
 @endpoint({
     method: "GET",
     path: "/users/network",
