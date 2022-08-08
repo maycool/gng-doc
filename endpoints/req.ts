@@ -63,8 +63,8 @@ interface GetRequrestParam {
 
 interface GetRequestSuccessResponse {
     data: {
-        sent: DataContent[];
-        received: DataContent[];
+        sent:DataContent[];
+        received:DataContent[]; 
     };
     message: string;
 }
@@ -112,7 +112,7 @@ interface DataObject {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}/accept",
+    path: "/request/{id}/accept",
     tags: ["Requests"]
 })
 class AcceptRequest {
@@ -140,7 +140,7 @@ interface AcceptRequestFailureResponse {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}/decline",
+    path: "/request/{id}/decline",
     tags: ["Requests"]
 })
 class DeclineRequest {
@@ -169,7 +169,7 @@ interface DeclineRequestFailureResponse {
 
 @endpoint({
     method: "PATCH",
-    path: "/requests/{id}/cancel",
+    path: "/request/{id}/cancel",
     tags: ["Requests"]
 })
 class CancelRequest {
