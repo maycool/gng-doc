@@ -20,6 +20,21 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
     @response({ status: 400 })
     badRequestResponse(@body body: ListUsersResponseFail) {}
   }
+@endpoint({
+    method: "GET",
+    path: "/users/network",
+    tags: ["Users"]
+  })
+  class GetMyNetwork {
+    @request
+    request(@queryParams queryParams: ListNetwork) {}
+    /** Response models */
+    @response({ status: 200 })
+    Response(@body body: ListUsersResponseSuccess) {}
+
+    @response({ status: 400 })
+    badRequestResponse(@body body: ListUsersResponseFail) {}
+  }
   interface ListNetwork {
     role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'OTHER' | 'AGENT';
     name?: string;
