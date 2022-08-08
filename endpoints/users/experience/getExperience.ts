@@ -1,5 +1,5 @@
 import { endpoint, request, response, body, Integer, headers, queryParams , pathParams } from "@airtasker/spot";
-import { ListExperienceFail,ListExperienceSuccess} from './types'
+import { ListExperienceFail,ExperienceResponseListClubAndNational} from './types'
 
 @endpoint({
     method: "GET",
@@ -13,7 +13,7 @@ import { ListExperienceFail,ListExperienceSuccess} from './types'
     }) {}
     /** Response models */
     @response({ status: 200 })
-    Response(@body body: ListExperienceSuccess) {}
+    Response(@body body: ExperienceResponseListClubAndNational) {}
 
     @response({ status: 400 })
     badRequestResponse(@body body: ListExperienceFail) {}

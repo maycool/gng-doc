@@ -20,6 +20,10 @@ interface ListedExperienceInProfile {
 
 }
 
+export interface ExperienceResponseListClubAndNational {
+    CLUB: ListedExperienceInProfile[];
+    NATIONAL: ListedExperienceInProfile[];
+}
 export interface ListExperienceSuccess{
     data: ListedExperienceInProfile[]
     message: string;
