@@ -1,14 +1,16 @@
-import { endpoint, request, response, body, Integer, headers, queryParams  } from "@airtasker/spot";
+import { endpoint, request, response, body, Integer, headers, queryParams , pathParams } from "@airtasker/spot";
 import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
 /** The list returns all user statuses even rejected that are connected to the user sending the request through their network */
 @endpoint({
     method: "GET",
-    path: "/users/network",
+    path: "/users/:id/network",
     tags: ["Users"]
   })
   class GetUserNetwork {
     @request
-    request(@queryParams queryParams: ListNetwork) {}
+    request(@queryParams queryParams: ListNetwork, @pathParams pathParams: {
+      id: Integer;
+    }) {}
 
 
     /** Response models */
