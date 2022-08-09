@@ -17,12 +17,11 @@ class CreateTeam {
 }
 
 interface CreateTeamsRequestBody {
-    nameAr?: string;
-    nameEn?: string;
+    names: {name: string; lang: 'EN' | 'AR' | 'FR'}[]
     type?: 'NATIONAL' | 'CLUB';
     status?: 'PENDING' | 'APPROVED'; 
     mediaUrl?: string;
-    countryId: Integer;
+    countryId?: Integer;
 }
 interface CreateTeamsRequestHeaders {
     "Accept-Language":string
