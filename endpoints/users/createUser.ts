@@ -20,18 +20,18 @@ interface CreateUserRequest {
   firstName: string;
   lastName: string;
   /** FORMAT MMMM DD, YYYY */
-  birthDate: string;
+  birthdate: string;
   gender: 'MALE' | 'FEMALE';
-  nationalityId: number;
+  nationalityId: Integer;
    /** Regex accepts a '+' then a series of digits of min length 6 and max length 20 */
   number: string;
   mediaUrl: string;
   email: string;
-  countryId: number;
+  countryId: Integer;
   city: string;
   role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
-  agentId?: number;
-  parentId?: number;
+  agentId?: Integer;
+  parentId?: Integer;
   // aux fields --------------------------------
   height?: Integer;
   weight?: Integer;
@@ -62,7 +62,7 @@ interface CreateUserRequest {
   // -------------------------------------------
   skills?: Skill;
   connections?: Integer[];
-  experience?: Experience[];
+  experiences?: Experience[];
   certificates?: Certificate[];
 
 
