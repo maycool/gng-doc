@@ -44,36 +44,64 @@ class ListTeams {
     @request
     request(@headers headers: ListTeamsRequest, @queryParams queryParams: ListClubsPathParams) {}
 
+    /** Mobile user response */
     @response({ status: 200 })
-    successResponse(@body body: ListTeamsSuccessResponse) {}
+    mobileResponse(@body body: ListTeamsSuccessResponseMobile) {}
+    /** Admin user response */
+    @response({ status: 201 })
+    adminResponse(@body body: ListTeamsSuccessResponseAdmin) {}
 
     @response({ status: 400 })
     badRequestResponse(@body body: ListTeamsFailureResponse) {}
 }
 
-interface TeamsData {
+interface ListTeamsSuccessResponseAdmin{
+    message: string;
+    data: TeamsDataAdmin[];
+}
+interface TeamsDataAdmin {
+    id: number;
+    type: 'NATIONAL'|'CLUB';
+    status: 'PENDING'|'APPROVED';
+    names: { name: string; lang: string }[];
+    country: {
+        id: Integer;
+        name: string;
+    };
+    media: {
+        id: Integer;
+        url: string;
+    };
+}
+interface TeamsDataMobile {
     id: number;
     name: string;
     type: 'NATIONAL'|'CLUB';
-    countryId: number;
-    countryName: string;
     status: 'PENDING'|'APPROVED';
-    url: string;
+    lang: string;
+    country: {
+        id: Integer;
+        name: string;
+    };
+    media: {
+        id: Integer;
+        url: string;
+    };
 }
 
 interface ListClubsPathParams {
     name?: string;
-    status?: string;
-    type?: string;
+    status?: 'APPROVED' | 'PENDING';
+    type?: 'NATIONAL' | 'CLUB';
     countryId?: Integer;
 }
 
 interface ListTeamsRequest {
     "Accept-Language":string
 }
-interface ListTeamsSuccessResponse{
+interface ListTeamsSuccessResponseMobile{
     message: string;
-    data: TeamsData[];
+    data: TeamsDataMobile[];
 }
 interface ListTeamsFailureResponse{
     message: string;
@@ -100,7 +128,7 @@ interface GetTeamRequest {
 }
 interface GetTeamSuccessResponse{
     message: string;
-    data: TeamsData;
+    data: TeamsDataMobile;
 }
 
 
