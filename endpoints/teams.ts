@@ -2,7 +2,7 @@ import { endpoint, request, response, body, headers, queryParams, Integer } from
 
 @endpoint({
     method: "POST",
-    path: "/clubs",
+    path: "/teams",
     tags: ["Teams"]
 })
 class CreateTeam {
@@ -36,7 +36,7 @@ interface CreateTeamsFailureResponse{
 
 @endpoint({
     method: "GET",
-    path: "/clubs",
+    path: "/teams",
     tags: ["Teams"]
 })
 class ListTeams {
@@ -62,7 +62,7 @@ interface TeamsDataAdmin {
     id: number;
     type: 'NATIONAL'|'CLUB';
     status: 'PENDING'|'APPROVED';
-    names: { name: string; lang: string }[];
+    names: { id:Integer; name: string; lang: string }[];
     country: {
         id: Integer;
         name: string;
@@ -108,32 +108,8 @@ interface ListTeamsFailureResponse{
 
 
 @endpoint({
-    method: "GET",
-    path: "/clubs/{id}",
-    tags: ["Teams"]
-})
-class GetTeam {
-    @request
-    request(@headers headers: GetTeamRequest) {}
-
-    @response({ status: 200 })
-    successResponse(@body body: GetTeamSuccessResponse) {}
-
-    @response({ status: 400 })
-    badRequestResponse(@body body: ListTeamsFailureResponse) {}
-}
-interface GetTeamRequest {
-    "Accept-Language":string;
-}
-interface GetTeamSuccessResponse{
-    message: string;
-    data: TeamsDataMobile;
-}
-
-
-@endpoint({
     method: "PATCH",
-    path: "/clubs/{id}",
+    path: "/teams/{id}",
     tags: ["Teams"]
 })
 class EditTeam {
@@ -169,7 +145,7 @@ interface EditTeamFailureResponse{
 
 @endpoint({
     method: "DELETE",
-    path: "/clubs/{id}",
+    path: "/teams/{id}",
     tags: ["Teams"]
 })
 class DeleteTeam {
