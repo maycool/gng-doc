@@ -21,7 +21,7 @@ interface CreateTeamsRequestBody {
     type?: 'NATIONAL' | 'CLUB';
     status?: 'PENDING' | 'APPROVED'; 
     mediaUrl?: string;
-    countryId?: Integer;
+    countryId: Integer;
 }
 interface CreateTeamsRequestHeaders {
     "Accept-Language":string
