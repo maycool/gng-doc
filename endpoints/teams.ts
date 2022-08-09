@@ -1,4 +1,4 @@
-import { endpoint, request, response, body, headers, queryParams, Integer } from "@airtasker/spot";
+import { endpoint, request, response, body, headers, queryParams, Integer, pathParams } from "@airtasker/spot";
 
 @endpoint({
     method: "POST",
@@ -106,15 +106,17 @@ interface ListTeamsFailureResponse{
     message: string;
 }
 
-
+/**ADMIN ROUTE ONLY */
 @endpoint({
     method: "PATCH",
-    path: "/teams/{id}",
+    path: "/teams/:id",
     tags: ["Teams"]
 })
 class EditTeam {
     @request
-    request(@body body: EditTeamRequestBody, @headers headers: EditTeamRequestHeader) {}
+    request(@body body: EditTeamRequestBody,@pathParams pathParams: {
+        id: Integer;
+      }) {}
 
     @response({ status: 200 })
     successResponse(@body body: EditTeamSuccessResponse) {}
@@ -123,22 +125,20 @@ class EditTeam {
     badRequestResponse(@body body: EditTeamFailureResponse) {}
 }
 
-interface EditTeamRequestHeader {
-    "Accept-Language":string;
-}
+
 interface EditTeamRequestBody {
-    name?: string;
     type?: 'NATIONAL'|'CLUB';
-    countryId?: number;
-    status?: 'PENDING'|'APPROVED';
+    countryId?: Integer;
     mediaUrl?: string;
+    status?: 'PENDING'|'APPROVED';
+    names?: {id?: Integer; name: string; lang: string}[];
 }
 interface EditTeamSuccessResponse{
-    data: string;
+    message: string;
 }
 
 interface EditTeamFailureResponse{
-    data: string;
+    message: string;
 }
 
 
