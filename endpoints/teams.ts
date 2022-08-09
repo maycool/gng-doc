@@ -145,12 +145,14 @@ interface EditTeamFailureResponse{
 
 @endpoint({
     method: "DELETE",
-    path: "/teams/{id}",
+    path: "/teams/:id",
     tags: ["Teams"]
 })
 class DeleteTeam {
     @request
-    request(@headers headers:DeleteTeamRequest) {}
+    request(@pathParams pathParams: {
+        id: Integer;
+      }) {}
 
     @response({ status: 200 })
     successResponse(@body body: DeleteTeamSuccessResponse) {}
@@ -159,9 +161,6 @@ class DeleteTeam {
     badRequestResponse(@body body: DeleteTeamFailureResponse) {}
 }
 
-interface DeleteTeamRequest{
-    "Accept-Language":string
-}
 interface DeleteTeamSuccessResponse{
     message: string;
 }
