@@ -39,7 +39,7 @@ interface CreateUserRequest {
   primaryPosition?: 'Goalkeeper (GK)' | 'Left Back (LB)' | 'Center Back (CB)' | 'Sweeper (SW)' | 'Right Back (RB)' | 'Left Midfielder (LMF)' | 'Center Midfielder (CMF)' |
  'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CW)' | 'Right Winger (RW)' | 'Striker (ST)'
   otherPosition?: 'Goalkeeper (GK)' | 'Left Back (LB)' | 'Center Back (CB)' | 'Sweeper (SW)' | 'Right Back (RB)' | 'Left Midfielder (LMF)' | 'Center Midfielder (CMF)' |
-  'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CW)' | 'Right Winger (RW)' | 'Striker (ST)';
+  'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CF)' | 'Right Winger (RW)' | 'Striker (ST)';
   countriesCoachedIn?: Integer[];
   totalTeamsCoached?: Integer;
   preferredFormation?: string;
