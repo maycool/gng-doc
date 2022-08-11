@@ -40,11 +40,9 @@ interface PatchUserRequest {
     'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CW)' | 'Right Winger (RW)' | 'Striker (ST)'
      otherPosition?: 'Goalkeeper (GK)' | 'Left Back (LB)' | 'Center Back (CB)' | 'Sweeper (SW)' | 'Right Back (RB)' | 'Left Midfielder (LMF)' | 'Center Midfielder (CMF)' |
      'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CW)' | 'Right Winger (RW)' | 'Striker (ST)';
+     preferredFormation?: string;
      countriesCoachedIn?: Integer[];
      totalTeamsCoached?: Integer;
-     preferredFormation?: string;
-     locationOfScouting?: Integer[];
      typeOfScouting?: string;
-     areasCovered?: Integer[];
      totalCareerTransfers?: Integer;
 }
