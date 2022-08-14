@@ -67,6 +67,7 @@ import {  Integer} from "@airtasker/spot";
         media: Media;
         team?: Team;
         agent?: AgentForUser;
+        countriesWorkedIn?: Country[];
         country: Country;
     }
     export interface Scout {
@@ -83,6 +84,7 @@ import {  Integer} from "@airtasker/spot";
         team?: Team;
         media: Media;
         representee?: Player[] | Coach[];
+        countriesWorkedIn?: Country[];
         country: Country;
     }
     export interface Agent {
@@ -98,6 +100,7 @@ import {  Integer} from "@airtasker/spot";
         totalCareerTransfers?: Integer;
         media: Media;
         representee?: Player[] | Coach[];
+        countriesWorkedIn?: Country[];
         country: Country;
     }
     export interface Other {
