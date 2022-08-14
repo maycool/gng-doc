@@ -5,3 +5,5 @@ import './updateUser';
 import './getProfile';
 import './experience/getExperience';
 import './Forms/getForm';
+import './approveUser';
+import './declineUser';
