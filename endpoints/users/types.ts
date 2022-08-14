@@ -30,6 +30,12 @@ import {  Integer} from "@airtasker/spot";
         url: string;
         name: string;
     }
+    export interface CountriesWorkedIn {
+        id: Integer;
+        name: string;
+        latitude: number;
+        longitude: number;
+    }
 
     export interface Player {
         id: Integer;
@@ -67,7 +73,7 @@ import {  Integer} from "@airtasker/spot";
         media: Media;
         team?: Team;
         agent?: AgentForUser;
-        countriesWorkedIn?: Country[];
+        countriesWorkedIn?: CountriesWorkedIn[];
         country: Country;
     }
     export interface Scout {
@@ -84,7 +90,7 @@ import {  Integer} from "@airtasker/spot";
         team?: Team;
         media: Media;
         representee?: Player[] | Coach[];
-        countriesWorkedIn?: Country[];
+        countriesWorkedIn?: CountriesWorkedIn[];
         country: Country;
     }
     export interface Agent {
@@ -100,7 +106,7 @@ import {  Integer} from "@airtasker/spot";
         totalCareerTransfers?: Integer;
         media: Media;
         representee?: Player[] | Coach[];
-        countriesWorkedIn?: Country[];
+        countriesWorkedIn?: CountriesWorkedIn[];
         country: Country;
     }
     export interface Other {
