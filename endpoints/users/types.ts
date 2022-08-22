@@ -70,7 +70,7 @@ import {  Integer} from "@airtasker/spot";
         role: string;
         verificationStatus: string;
         nationality: string;
-        preferredFormation?: string[];
+        preferredFormation?: string;
         totalTeamsCoached?: Integer;
         media?: Media;
         team?: Team;
