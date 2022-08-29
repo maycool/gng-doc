@@ -42,6 +42,9 @@ class ListSkill {
 
     @response({ status: 200 })
     successResponse(@body body: ListSkillSuccessResponse) {}
+     /** Admin response models */
+    @response({ status: 201 })
+    adminResponse(@body body: ListSkillSuccessAdminResponse) {}
 
     @response({ status: 400 })
     badRequestResponse(@body body: ListSkillFailureResponse) {}
@@ -54,8 +57,29 @@ interface ListSkillRequest {
     name:string;
     lang: 'EN' | 'AR'
 }
-
-
+interface SkillAdminObject {
+    /** Skill ID */
+        id: Integer,
+        role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
+        status: 'APPROVED' | 'PENDING'; 
+        names: {
+            /** Localized Skill ID */
+            id: Integer,
+            name: string,
+            lang: 'AR' | 'EN' 
+        };
+    }
+interface SkillAdminEntry {
+    id: SkillAdminObject
+}
+interface ListSkillSuccessAdminResponse{
+    data: {
+        /** Skill ID in string format */
+        skills: SkillAdminEntry[];
+        total: Integer;
+    };
+    message: string;
+}
 interface ListSkillSuccessResponse{
         message: string;
 }

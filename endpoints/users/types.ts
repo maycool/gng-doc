@@ -138,6 +138,13 @@ export interface ListUsersResponseSuccess{
     data: Player[] | Coach[] | Agent[] | Scout[] | Other[];
     message: string;
 }
+export interface ListUsersAdminResponseSuccess{
+    data: {
+        users: Player[] | Coach[] | Agent[] | Scout[] | Other[];
+        total: Integer
+    };
+    message: string;
+}
 export interface ListUsersResponseFail{
     message: string;
 }

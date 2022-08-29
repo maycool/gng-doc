@@ -54,9 +54,16 @@ class ListTeams {
     badRequestResponse(@body body: ListTeamsFailureResponse) {}
 }
 
+interface TeamAdminEntry {
+    id: TeamsDataAdmin
+}
 interface ListTeamsSuccessResponseAdmin{
     message: string;
-    data: TeamsDataAdmin[];
+    data: {
+        /** Team ID in string format */
+        teams: TeamAdminEntry[];
+        total: Integer;
+    };
 }
 interface TeamsDataAdmin {
     id: number;

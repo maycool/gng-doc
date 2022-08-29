@@ -1,5 +1,5 @@
 import { endpoint, request, response, body, Integer, headers, queryParams , pathParams } from "@airtasker/spot";
-import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
+import {ListUsersResponseFail, ListUsersAdminResponseSuccess} from "./types";
 /** The list returns all user statuses even rejected that are connected to the user sending the request through their network */
 @endpoint({
     method: "GET",
@@ -15,7 +15,7 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
 
     /** Response models */
     @response({ status: 200 })
-    Response(@body body: ListUsersResponseSuccess) {}
+    Response(@body body: ListUsersAdminResponseSuccess) {}
 
     @response({ status: 400 })
     badRequestResponse(@body body: ListUsersResponseFail) {}
@@ -32,7 +32,7 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
     request(@queryParams queryParams: ListNetwork) {}
     /** Response models */
     @response({ status: 200 })
-    Response(@body body: ListUsersResponseSuccess) {}
+    Response(@body body: ListUsersAdminResponseSuccess) {}
 
     @response({ status: 400 })
     badRequestResponse(@body body: ListUsersResponseFail) {}

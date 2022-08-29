@@ -1,5 +1,5 @@
 import { endpoint, request, response, body, Integer, headers, queryParams  } from "@airtasker/spot";
-import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
+import {ListUsersResponseSuccess, ListUsersResponseFail, ListUsersAdminResponseSuccess} from "./types";
 /** A general listing method for users with filters */
 @endpoint({
     method: "GET",
@@ -13,6 +13,10 @@ import {ListUsersResponseSuccess, ListUsersResponseFail} from "./types";
        /** Response models */
        @response({ status: 200 })
        Response(@body body: ListUsersResponseSuccess) {}
+       
+       /** Admin response models */
+       @response({ status: 201 })
+       AdminResponse(@body body: ListUsersAdminResponseSuccess) {}
    
        @response({ status: 400 })
        badRequestResponse(@body body: ListUsersResponseFail) {}
