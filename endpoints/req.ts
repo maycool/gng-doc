@@ -1,5 +1,5 @@
 import { endpoint, request, response, body, headers, queryParams, Integer } from "@airtasker/spot";
-
+import {Player, Agent, Coach, Scout, Other} from './users/types'
 @endpoint({
     method: "POST",
     path: "/users/{toId}/requests/",
@@ -57,15 +57,14 @@ interface GetRequestHeaders {
 }
 
 interface GetRequrestParam {
-    limit: number;
-    offset: number;
+    offset: Integer;
+    limit: Integer;
+    relationType: 'FRIEND' | 'PROFESSIONAL';
+    requestType: 'SENT' | 'RECEIVED';
 }
 
 interface GetRequestSuccessResponse {
-    data: {
-        sent:DataContent[];
-        received:DataContent[]; 
-    };
+    data: DataContent;
     message: string;
 }
 
@@ -73,36 +72,35 @@ interface GetRequestFailureResponse {
     message: string
 }
 
+interface PlayerRequests extends Player {
+    userRequestId:Integer;
+    requestType: 'FRIEND' | 'AGENT' | 'SCOUT' | 'PARENT';
+}
+interface AgentRequests extends Player {
+    userRequestId:Integer;
+    requestType: 'FRIEND' | 'AGENT';
+}
+interface CoachRequests extends Player {
+    userRequestId:Integer;
+    requestType: 'FRIEND' | 'AGENT';
+}
+interface ScoutRequests extends Player {
+    userRequestId:Integer;
+    requestType: 'FRIEND' | 'SCOUT';
+}
+interface OtherRequests extends Player {
+    userRequestId:Integer;
+    requestType: 'FRIEND' | 'PARENT';
+}
 interface DataContent {
-    requestId: number;
-    user:{
-        firstName: string;
-        lastName: string;
-        birthDate: string;
-        gender: 'MALE' | 'FEMALE';
-        nationalityId: number;
-        number: string;
-        media: { id?: Integer, url?: string }
-        team: { id?: Integer, name?: string }
-        country: { id: Integer, url: string, name: string }
-        email: string;
-        city: string;
-        role: 'PLAYER' | 'COACH' | 'SCOUT' | 'AGENT' | 'OTHER';
-        height?: Integer;
-        weight?: Integer;
-        strongFoot?: 'LEFT' | 'RIGHT' | 'BOTH';
-        primaryPosition?: string;
-        otherPosition?: string;
-        countriesCoachedIn?: DataObject[];
-        totalTeamsCoached?: Integer;
-        preferredFormation?: string;
-        locationOfScouting?: DataObject[];
-        typeOfScouting?: string;
-        areasCovered?: DataObject[];
-        totalCareerTransfers?: Integer;
-    }
-    createdAt:string;
-    status:string;
+    sent: { 
+        PROFESSIONAL: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+        FRIEND: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+    },
+    received: { 
+        PROFESSIONAL: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+        FRIEND: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+    },
 }
 
 interface DataObject {
