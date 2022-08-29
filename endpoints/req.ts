@@ -57,10 +57,10 @@ interface GetRequestHeaders {
 }
 
 interface GetRequrestParam {
-    offset: Integer;
-    limit: Integer;
-    relationType: 'FRIEND' | 'PROFESSIONAL';
-    requestType: 'SENT' | 'RECEIVED';
+    offset?: Integer;
+    limit?: Integer;
+    relationType?: 'FRIEND' | 'PROFESSIONAL';
+    requestType?: 'SENT' | 'RECEIVED';
 }
 
 interface GetRequestSuccessResponse {
