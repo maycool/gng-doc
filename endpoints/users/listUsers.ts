@@ -30,6 +30,10 @@ interface ListUsersParams {
     isVerified?: boolean;
     /** A flag to get the rejected users with the returned set */
     getRejected?: boolean;
+    /** Admin only */
+    email?: string;
+    /** Admin only */
+    number?: string;
     limit: Integer;
     offset: Integer;
 }

@@ -11,20 +11,6 @@ import {  Integer} from "@airtasker/spot";
         name?: string;
     }
 
-    export interface Parent {
-        id?: Integer;
-        firstName?: string;
-        lastName?: string;
-        url?: string;
-    }
-
-    export interface AgentForUser {
-        id: Integer;
-        firstName: string;
-        lastName: string;
-        url: string;
-    }
-
     export interface Country {
         id: Integer;
         url: string;
@@ -35,6 +21,78 @@ import {  Integer} from "@airtasker/spot";
         name: string;
         latitude: number;
         longitude: number;
+    }
+
+
+    export interface Coach {
+        id: Integer;
+        firstName: string;
+        lastName: string;
+        birthdate: string;
+        bio?: string;
+        gender: string;
+        city: string;
+        role: string;
+        verificationStatus: string;
+        nationality: string;
+        preferredFormation?: string;
+        totalTeamsCoached?: Integer;
+        media?: Media;
+        team?: Team;
+        relationshipStatus: 'FRIEND' | 'REQUESTED' | 'PENDING' | null;
+        countriesWorkedIn?: CountriesWorkedIn[];
+        country: Country;
+    }
+    export interface Scout {
+        id: Integer;
+        firstName: string;
+        lastName: string;
+        birthdate: string;
+        bio?: string;
+        gender: string;
+        city: string;
+        role: string;
+        verificationStatus: string;
+        nationality: string;
+        typeOfScouting?: string;
+        team?: Team;
+        media?: Media;
+        relationshipStatus: 'FRIEND' | 'REQUESTED' | 'PENDING' | null;
+        countriesWorkedIn?: CountriesWorkedIn[];
+        country: Country;
+    }
+    export interface Agent {
+        id: Integer;
+        firstName: string;
+        lastName: string;
+        birthdate: string;
+        bio?: string;
+        gender: string;
+        city: string;
+        role: string;
+        verificationStatus: string;
+        nationality: string;
+        totalCareerTransfers?: Integer;
+        media?: Media;
+        relationshipStatus: 'FRIEND' | 'REQUESTED' | 'PENDING' | null;
+        countriesWorkedIn?: CountriesWorkedIn[];
+        country: Country;
+    }
+    export interface Other {
+        id: Integer;
+        firstName: string;
+        lastName: string;
+        birthdate: string;
+        bio?: string;
+        gender: string;
+        city: string;
+        role: string;
+        verificationStatus: string;
+        nationality: string;
+        relationshipStatus: 'FRIEND' | 'REQUESTED' | 'PENDING' | null;
+        media?: Media;
+        team?: Team;
+        country: Country;
     }
 
     export interface Player {
@@ -53,81 +111,11 @@ import {  Integer} from "@airtasker/spot";
         strongFoot?: string;
         otherPosition?: string;
         primaryPosition?: string;
+        relationshipStatus: 'FRIEND' | 'REQUESTED' | 'PENDING' | null;
         media?: Media;
         team?: Team;
-        parent?: Parent;
-        agent?: AgentForUser;
+        parent?: Other;
         country: Country;
-    }
-    export interface Coach {
-        id: Integer;
-        firstName: string;
-        lastName: string;
-        birthdate: string;
-        bio?: string;
-        gender: string;
-        city: string;
-        role: string;
-        verificationStatus: string;
-        nationality: string;
-        preferredFormation?: string;
-        totalTeamsCoached?: Integer;
-        media?: Media;
-        team?: Team;
-        agent?: AgentForUser;
-        countriesWorkedIn?: CountriesWorkedIn[];
-        country: Country;
-    }
-    export interface Scout {
-        id: Integer;
-        firstName: string;
-        lastName: string;
-        birthdate: string;
-        bio?: string;
-        gender: string;
-        city: string;
-        role: string;
-        verificationStatus: string;
-        nationality: string;
-        typeOfScouting?: string;
-        team?: Team;
-        media?: Media;
-        representee?: Player[] | Coach[];
-        countriesWorkedIn?: CountriesWorkedIn[];
-        country: Country;
-    }
-    export interface Agent {
-        id: Integer;
-        firstName: string;
-        lastName: string;
-        birthdate: string;
-        bio?: string;
-        gender: string;
-        city: string;
-        role: string;
-        verificationStatus: string;
-        nationality: string;
-        totalCareerTransfers?: Integer;
-        media?: Media;
-        representee?: Player[] | Coach[];
-        countriesWorkedIn?: CountriesWorkedIn[];
-        country: Country;
-    }
-    export interface Other {
-        id: Integer;
-        firstName: string;
-        lastName: string;
-        birthdate: string;
-        bio?: string;
-        gender: string;
-        city: string;
-        role: string;
-        verificationStatus: string;
-        nationality: string;
-        media?: Media;
-        team?: Team;
-        country: Country;
-        supervisorOf?: Player[];
     }
 
 export interface ProfileResponseSuccess{
@@ -138,9 +126,30 @@ export interface ListUsersResponseSuccess{
     data: Player[] | Coach[] | Agent[] | Scout[] | Other[];
     message: string;
 }
+
+export interface PlayerAdmin extends Player {
+    email: string;
+    number: string;
+}
+export interface CoachAdmin extends Coach {
+    email: string;
+    number: string;
+}
+export interface ScoutAdmin extends Scout {
+    email: string;
+    number: string;
+}
+export interface AgentAdmin extends Agent {
+    email: string;
+    number: string;
+}
+export interface OtherAdmin extends Other {
+    email: string;
+    number: string;
+}
 export interface ListUsersAdminResponseSuccess{
     data: {
-        users: Player[] | Coach[] | Agent[] | Scout[] | Other[];
+        users: PlayerAdmin[] | CoachAdmin[] | AgentAdmin[] | ScoutAdmin[] | OtherAdmin[];
         total: Integer
     };
     message: string;
