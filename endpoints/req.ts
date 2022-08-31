@@ -1,224 +1,254 @@
-import { endpoint, request, response, body, headers, queryParams, Integer } from "@airtasker/spot";
-import {Player, Agent, Coach, Scout, Other} from './users/types'
+import {
+  endpoint,
+  request,
+  response,
+  body,
+  headers,
+  queryParams,
+  Integer,
+} from "@airtasker/spot";
+import { Player, Agent, Coach, Scout, Other } from "./types";
 @endpoint({
-    method: "POST",
-    path: "/users/{toId}/requests/",
-    tags: ["Requests"]
+  method: "POST",
+  path: "/users/{toId}/requests/",
+  tags: ["Requests"],
 })
 class CreateRequest {
-    @request
-    request(@headers headers: CreateRequestHeaders, @body body: CreateRequestBody) {}
+  @request
+  request(
+    @headers headers: CreateRequestHeaders,
+    @body body: CreateRequestBody
+  ) {}
 
-    @response({ status: 200 })
-    successResponse(@body body: CreateRequestSuccessResponse) {}
+  @response({ status: 200 })
+  successResponse(@body body: CreateRequestSuccessResponse) {}
 
-    @response({ status: 400 })
-    badRequestResponse(@body body: CreateRequestFailureResponse) {}
+  @response({ status: 400 })
+  badRequestResponse(@body body: CreateRequestFailureResponse) {}
 }
 
 interface CreateRequestHeaders {
-    "Accept-Language":string
+  "Accept-Language": string;
 }
 
 interface CreateRequestBody {
-    "type": 'FRIEND' | 'AGENT' | 'PARENT' | 'SCOUT';
+  type: "FRIEND" | "AGENT" | "PARENT" | "SCOUT";
 }
 
 interface CreateRequestSuccessResponse {
-    data : {
-        id:number;
-    };
-    message:string;
+  data: {
+    id: number;
+  };
+  message: string;
 }
 
 interface CreateRequestFailureResponse {
-    message: string
+  message: string;
 }
 
-
 @endpoint({
-    method: "GET",
-    path: "/users/{id}/requests/",
-    tags: ["Requests"]
+  method: "GET",
+  path: "/users/{id}/requests/",
+  tags: ["Requests"],
 })
 class getPendingRequests {
-    @request
-    request(@headers headers: GetRequestHeaders, @queryParams queryParams: GetRequrestParam) {}
+  @request
+  request(
+    @headers headers: GetRequestHeaders,
+    @queryParams queryParams: GetRequrestParam
+  ) {}
 
-    @response({ status: 200 })
-    successResponse(@body body: GetRequestSuccessResponse) {}
+  @response({ status: 200 })
+  successResponse(@body body: GetRequestSuccessResponse) {}
 
-    @response({ status: 400 })
-    badRequestResponse(@body body: GetRequestFailureResponse) {}
+  @response({ status: 400 })
+  badRequestResponse(@body body: GetRequestFailureResponse) {}
 }
 
 interface GetRequestHeaders {
-    "Accept-Language":string
+  "Accept-Language": string;
 }
 
 interface GetRequrestParam {
-    offset?: Integer;
-    limit?: Integer;
-    relationType?: 'FRIEND' | 'PROFESSIONAL';
-    requestType?: 'SENT' | 'RECEIVED';
+  offset?: Integer;
+  limit?: Integer;
+  relationType?: "FRIEND" | "PROFESSIONAL";
+  requestType?: "SENT" | "RECEIVED";
 }
 
 interface GetRequestSuccessResponse {
-    data: DataContent;
-    message: string;
+  data: DataContent;
+  message: string;
 }
 
 interface GetRequestFailureResponse {
-    message: string
+  message: string;
 }
 
 interface PlayerRequests extends Player {
-    userRequestId:Integer;
-    requestType: 'FRIEND' | 'AGENT' | 'SCOUT' | 'PARENT';
+  userRequestId: Integer;
+  requestType: "FRIEND" | "AGENT" | "SCOUT" | "PARENT";
 }
 interface AgentRequests extends Player {
-    userRequestId:Integer;
-    requestType: 'FRIEND' | 'AGENT';
+  userRequestId: Integer;
+  requestType: "FRIEND" | "AGENT";
 }
 interface CoachRequests extends Player {
-    userRequestId:Integer;
-    requestType: 'FRIEND' | 'AGENT';
+  userRequestId: Integer;
+  requestType: "FRIEND" | "AGENT";
 }
 interface ScoutRequests extends Player {
-    userRequestId:Integer;
-    requestType: 'FRIEND' | 'SCOUT';
+  userRequestId: Integer;
+  requestType: "FRIEND" | "SCOUT";
 }
 interface OtherRequests extends Player {
-    userRequestId:Integer;
-    requestType: 'FRIEND' | 'PARENT';
+  userRequestId: Integer;
+  requestType: "FRIEND" | "PARENT";
 }
 interface DataContent {
-    sent: { 
-        PROFESSIONAL: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
-        FRIEND: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
-    },
-    received: { 
-        PROFESSIONAL: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
-        FRIEND: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
-    },
+  sent: {
+    PROFESSIONAL:
+      | PlayerRequests
+      | AgentRequests[]
+      | CoachRequests[]
+      | ScoutRequests[]
+      | OtherRequests[];
+    FRIEND:
+      | PlayerRequests
+      | AgentRequests[]
+      | CoachRequests[]
+      | ScoutRequests[]
+      | OtherRequests[];
+  };
+  received: {
+    PROFESSIONAL:
+      | PlayerRequests
+      | AgentRequests[]
+      | CoachRequests[]
+      | ScoutRequests[]
+      | OtherRequests[];
+    FRIEND:
+      | PlayerRequests
+      | AgentRequests[]
+      | CoachRequests[]
+      | ScoutRequests[]
+      | OtherRequests[];
+  };
 }
 
 interface DataObject {
-    id?: Integer;
-    name?: string;
+  id?: Integer;
+  name?: string;
 }
 
 @endpoint({
-    method: "PATCH",
-    path: "/request/{id}/accept",
-    tags: ["Requests"]
+  method: "PATCH",
+  path: "/request/{id}/accept",
+  tags: ["Requests"],
 })
 class AcceptRequest {
-    @request
-    request(@headers headers: AcceptRequestHeaders) {}
+  @request
+  request(@headers headers: AcceptRequestHeaders) {}
 
-    @response({ status: 200 })
-    successResponse(@body body: AcceptRequestSuccessResponse) {}
+  @response({ status: 200 })
+  successResponse(@body body: AcceptRequestSuccessResponse) {}
 
-    @response({ status: 400 })
-    badRequestResponse(@body body: AcceptRequestFailureResponse) {}
+  @response({ status: 400 })
+  badRequestResponse(@body body: AcceptRequestFailureResponse) {}
 }
 
 interface AcceptRequestHeaders {
-    "Accept-Language":string
+  "Accept-Language": string;
 }
 
 interface AcceptRequestSuccessResponse {
-    message:string
+  message: string;
 }
 
 interface AcceptRequestFailureResponse {
-    message: string
+  message: string;
 }
 
 @endpoint({
-    method: "PATCH",
-    path: "/request/{id}/decline",
-    tags: ["Requests"]
+  method: "PATCH",
+  path: "/request/{id}/decline",
+  tags: ["Requests"],
 })
 class DeclineRequest {
-    @request
-    request(@headers headers: DeclineRequestHeaders) {}
+  @request
+  request(@headers headers: DeclineRequestHeaders) {}
 
-    @response({ status: 200 })
-    successResponse(@body body: DeclineRequestSuccessResponse) {}
+  @response({ status: 200 })
+  successResponse(@body body: DeclineRequestSuccessResponse) {}
 
-    @response({ status: 400 })
-    badRequestResponse(@body body: DeclineRequestFailureResponse) {}
+  @response({ status: 400 })
+  badRequestResponse(@body body: DeclineRequestFailureResponse) {}
 }
 
 interface DeclineRequestHeaders {
-    "Accept-Language":string
+  "Accept-Language": string;
 }
 
 interface DeclineRequestSuccessResponse {
-    message:string
+  message: string;
 }
 
 interface DeclineRequestFailureResponse {
-    message: string
-}   
-
+  message: string;
+}
 
 @endpoint({
-    method: "PATCH",
-    path: "/request/{id}/cancel",
-    tags: ["Requests"]
+  method: "PATCH",
+  path: "/request/{id}/cancel",
+  tags: ["Requests"],
 })
 class CancelRequest {
-    @request
-    request(@headers headers: CancelRequestHeaders) {}
+  @request
+  request(@headers headers: CancelRequestHeaders) {}
 
-    @response({ status: 200 })
-    successResponse(@body body: CancelRequestSuccessResponse) {}
+  @response({ status: 200 })
+  successResponse(@body body: CancelRequestSuccessResponse) {}
 
-    @response({ status: 400 })
-    badRequestResponse(@body body: CancelRequestFailureResponse) {}
+  @response({ status: 400 })
+  badRequestResponse(@body body: CancelRequestFailureResponse) {}
 }
 
 interface CancelRequestHeaders {
-    "Accept-Language":string
+  "Accept-Language": string;
 }
 
 interface CancelRequestSuccessResponse {
-    message:string
+  message: string;
 }
 
 interface CancelRequestFailureResponse {
-    message: string
-}   
-
-
+  message: string;
+}
 
 @endpoint({
-    method: "PATCH",
-    path: "/requests/{friendId}/unfriend",
-    tags: ["Requests"]
+  method: "PATCH",
+  path: "/requests/{friendId}/unfriend",
+  tags: ["Requests"],
 })
 class UnFriendRequest {
-    @request
-    request(@headers headers: UnFriendRequestHeaders) {}
+  @request
+  request(@headers headers: UnFriendRequestHeaders) {}
 
-    @response({ status: 200 })
-    successResponse(@body body: UnFriendRequestSuccessResponse) {}
+  @response({ status: 200 })
+  successResponse(@body body: UnFriendRequestSuccessResponse) {}
 
-    @response({ status: 400 })
-    badRequestResponse(@body body: UnFriendRequestFailureResponse) {}
+  @response({ status: 400 })
+  badRequestResponse(@body body: UnFriendRequestFailureResponse) {}
 }
 
 interface UnFriendRequestHeaders {
-    "Accept-Language":string
+  "Accept-Language": string;
 }
 
 interface UnFriendRequestSuccessResponse {
-    message:string
+  message: string;
 }
 
 interface UnFriendRequestFailureResponse {
-    message: string
+  message: string;
 }
