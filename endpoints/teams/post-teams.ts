@@ -1,5 +1,5 @@
 import { endpoint, request, response, body, Integer } from "@airtasker/spot";
-import { CreateTeamsRequestBody } from "../types";
+import { CreateTeamsRequest } from "../types";
 @endpoint({
   method: "POST",
   path: "/teams",
@@ -7,7 +7,7 @@ import { CreateTeamsRequestBody } from "../types";
 })
 class Post_Team {
   @request
-  request(@body body: CreateTeamsRequestBody) {}
+  request(@body body: CreateTeamsRequest) {}
 
   @response({ status: 200 })
   successResponse(@body body: CreateTeamsResponseSuccess) {}

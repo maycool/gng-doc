@@ -407,7 +407,7 @@ export interface TeamsMobileResponseObject {
 // TEAMS RESPONSE MODELS ==================================================================
 
 // TEAMS REQUESTS ==================================================================
-export interface CreateTeamsRequestBody {
+export interface CreateTeamsRequest {
   names: { name: string; lang: "EN" | "AR" | "FR" }[];
   type?: "NATIONAL" | "CLUB";
   status?: "PENDING" | "APPROVED";
@@ -423,3 +423,35 @@ export interface PatchTeamRequest {
   names?: { id?: Integer; name: string; lang: string }[];
 }
 // TEAMS REQUESTS ==================================================================
+
+// SKILLS RESPONSE MODELS ==================================================================
+export interface SkillAdminResponseObject {
+  /** Skill ID */
+  id: Integer;
+  role: "PLAYER" | "COACH" | "SCOUT" | "AGENT" | "OTHER";
+  status: "APPROVED" | "PENDING";
+  names: {
+    /** Localized Skill ID */
+    id: Integer;
+    name: string;
+    lang: "AR" | "EN";
+  };
+}
+// TODO NEEDS CHECKING
+// export interface SkillMobileResponseObject {
+//   /** Skill ID */
+//   id: Integer;
+//   role: "PLAYER" | "COACH" | "SCOUT" | "AGENT" | "OTHER";
+//   status: "APPROVED" | "PENDING";
+//   name: string;
+// }
+
+// SKILLS RESPONSE MODELS ==================================================================
+
+// SKILLS REQUESTS ==================================================================
+export interface CreateSkillRequest {
+  nameAr: string;
+  nameEn: string;
+  role: "PLAYER" | "COACH" | "SCOUT" | "AGENT" | "OTHER";
+}
+// SKILLS REQUESTS ==================================================================
