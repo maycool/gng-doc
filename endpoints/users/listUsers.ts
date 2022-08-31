@@ -25,14 +25,12 @@ import {ListUsersResponseSuccess, ListUsersResponseFail, ListUsersAdminResponseS
   
 interface ListUsersParams {
     role?: 'PLAYER' | 'COACH' | 'SCOUT' | 'OTHER' | 'AGENT';
+    /** Only admin can search with email or number or name in this field */
     name?: string;
     /** If set to true returns only verified users, if set to false returns unverified, verified, pending users and discards rejected */
     isVerified?: boolean;
     /** A flag to get the rejected users with the returned set */
     getRejected?: boolean;
-    /** Admin only */
-    email?: string;
-    /** Admin only */
     number?: string;
     limit: Integer;
     offset: Integer;
