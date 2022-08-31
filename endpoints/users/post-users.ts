@@ -12,7 +12,7 @@ class Post_User {
   @response({ status: 200 })
   successResponse(@body body: CreateUserSuccessResponse) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: CreateUserFailureResponse) {}
 }
 

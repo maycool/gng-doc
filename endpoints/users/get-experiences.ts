@@ -20,7 +20,7 @@ class Get_User_Experiences {
   @response({ status: 200 })
   Response(@body body: UserExperiencesResponseSuccess) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: ListExperienceFail) {}
 }
 export interface UserExperiencesResponseSuccess {

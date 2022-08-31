@@ -53,7 +53,7 @@ class Get_My_Network {
   @response({ status: 200 })
   Response(@body body: GetUsersNetworkResponseSuccess) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: GetUsersNetworkResponseFail) {}
 }
 

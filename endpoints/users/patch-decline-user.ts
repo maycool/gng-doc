@@ -12,15 +12,15 @@ class Patch_Decline_User_Request {
   @response({ status: 200 })
   successResponse(@body body: DeclineUserSuccessResponse) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: DeclineUserResponseFail) {}
 
-  @response({ status: 401 })
+  @response({ status: 403 })
   response(@body body: DeclineUserResponseUnauthorized) {}
 }
 
 interface DeclineUserSuccessResponse {
-  data: string;
+  message: string;
 }
 
 interface DeclineUserResponseFail {

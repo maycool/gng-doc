@@ -20,7 +20,7 @@ class Get_User_Verification_Form {
   @response({ status: 200 })
   Response(@body body: UserVerificationForm) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: GetUserVerificationFormFail) {}
 }
 interface GetUserVerificationFormFail {

@@ -22,7 +22,7 @@ class Get_Profile {
   @response({ status: 200 })
   Response(@body body: GetProfileResponseSuccess) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: GetProfileResponseFail) {}
 }
 export interface GetProfileResponseSuccess {

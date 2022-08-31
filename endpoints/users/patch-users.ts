@@ -12,7 +12,7 @@ import { PatchUserRequest } from "../types";
   path: "/users/:id",
   tags: ["Users"],
 })
-class Patch_Users {
+class Patch_User {
   @request
   request(
     @body body: PatchUserRequest,
@@ -26,7 +26,7 @@ class Patch_Users {
   @response({ status: 200 })
   Response(@body body: PatchUsersResponseSuccessFail) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: PatchUsersResponseSuccessFail) {}
 }
 interface PatchUsersResponseSuccessFail {

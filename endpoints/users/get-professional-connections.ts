@@ -19,7 +19,7 @@ class Get_Professional_Connections {
   @response({ status: 200 })
   Response(@body body: GetProfessionalConnectionsResponseSuccess) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: GetProfessionalConnectionsResponseFail) {}
 }
 

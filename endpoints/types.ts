@@ -372,3 +372,54 @@ export interface PatchUserRequest {
 }
 
 // USER REQUESTS ==================================================================
+
+// TEAMS RESPONSE MODELS ==================================================================
+export interface TeamsAdminResponseObject {
+  id: number;
+  type: "NATIONAL" | "CLUB";
+  status: "PENDING" | "APPROVED";
+  names: { id: Integer; name: string; lang: string }[];
+  country: {
+    id: Integer;
+    name: string;
+  };
+  media: {
+    id: Integer;
+    url: string;
+  };
+}
+
+export interface TeamsMobileResponseObject {
+  id: number;
+  name: string;
+  type: "NATIONAL" | "CLUB";
+  status: "PENDING" | "APPROVED";
+  lang: string;
+  country: {
+    id: Integer;
+    name: string;
+  };
+  media: {
+    id: Integer;
+    url: string;
+  };
+}
+// TEAMS RESPONSE MODELS ==================================================================
+
+// TEAMS REQUESTS ==================================================================
+export interface CreateTeamsRequestBody {
+  names: { name: string; lang: "EN" | "AR" | "FR" }[];
+  type?: "NATIONAL" | "CLUB";
+  status?: "PENDING" | "APPROVED";
+  mediaUrl?: string;
+  countryId: Integer;
+}
+
+export interface PatchTeamRequest {
+  type?: "NATIONAL" | "CLUB";
+  countryId?: Integer;
+  mediaUrl?: string;
+  status?: "PENDING" | "APPROVED";
+  names?: { id?: Integer; name: string; lang: string }[];
+}
+// TEAMS REQUESTS ==================================================================

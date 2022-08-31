@@ -20,15 +20,15 @@ class Patch_Approve_User {
   @response({ status: 200 })
   successResponse(@body body: ApproveUserResponseSuccess) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: ApproveUserResponseFail) {}
 
-  @response({ status: 401 })
+  @response({ status: 403 })
   response(@body body: ApproveUserResponseUnauthorized) {}
 }
 
 interface ApproveUserResponseSuccess {
-  data: string;
+  message: string;
 }
 
 interface ApproveUserResponseFail {

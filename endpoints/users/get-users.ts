@@ -38,7 +38,7 @@ class Get_Users {
   @response({ status: 201 })
   AdminResponse(@body body: GetUsersAdminResponseSuccess) {}
 
-  @response({ status: 400 })
+  @response({ status: 500 })
   badRequestResponse(@body body: GetUsersResponseFail) {}
 }
 
