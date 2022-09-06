@@ -42,9 +42,10 @@ interface CreateUserRequest {
   'Right Midfielder (RMF)' | 'Attacking Midfielder (AMF)' | 'Defensive Midfielder (DMF)' | 'Left Winger (LW)' | 'Center Forward (CF)' | 'Right Winger (RW)' | 'Striker (ST)';
   countriesCoachedIn?: Integer[];
   totalTeamsCoached?: Integer;
-  preferredFormation?: string;
+  /** Formation Ids */
+  preferredFormation?: Integer[];
   locationOfScouting?: Integer[];
-  typeOfScouting?: string;
+  typeOfScouting?: Integer;
   areasCovered?: Integer[];
   totalCareerTransfers?: Integer;
   // -------------------------------------------
@@ -83,7 +84,7 @@ interface Skill {
   new: {name: string}[];
 }
 interface Trophy {
-  title: string;
+  title: Integer;
   winningDate: string;
   mediaUrls?: {url: string, type: 'IMAGE' | 'VIDEO'}[];
 }
@@ -99,13 +100,15 @@ interface Certificate {
 interface Experience {
   teamId: Integer;
   isCurrentlyThere: boolean;
-  playingLevel?: string;
+  playingLevel?: Integer;
   startDate: string;
-  type?: string;
+  coachType?: Integer;
+  scoutType?: Integer;
+  otherEmploymentType?: Integer;
+  otherPosition?: Integer;
   endDate?: string;
   playersScouted?: Integer;
   matches: Integer;
   goals: Integer;
-  position?: string;
   trophies?: Trophy[];
 }
