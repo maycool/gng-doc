@@ -61,5 +61,5 @@ interface DeclineResponse {
     message: string;
 }
 interface DeclineRequestBody{
-    type: 'professional' | 'friend'
+    type: 'FRIEND' | 'SCOUT' | 'AGENT' | 'PARENT'
 }
