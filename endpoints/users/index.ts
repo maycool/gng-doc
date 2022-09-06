@@ -8,3 +8,4 @@ import './Forms/getForm';
 import './approveUser';
 import './declineUser';
 import './professionalConnections';
+import './requests';
