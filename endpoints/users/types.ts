@@ -157,3 +157,8 @@ export interface ListUsersAdminResponseSuccess{
 export interface ListUsersResponseFail{
     message: string;
 }
+
+export interface ListSuggestionsResponseSuccess{
+    data: Player[] | Coach[] | Agent[] | Scout[] | Other[];
+    message: string;
+}
