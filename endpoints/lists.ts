@@ -17,6 +17,7 @@ class GetLists {
 }
 
 interface ListsSuccessResponse {
+    /**playingLevel, coachType, scoutType, formation, trophyNamePlayer, trophyNameCoach, experiencePositionOther, experienceEmploymentTypeOther */
  data: { listName: EnumLists }
 }
 interface EnumEntries {
