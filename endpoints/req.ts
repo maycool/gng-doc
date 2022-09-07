@@ -59,8 +59,8 @@ interface GetRequestHeaders {
 interface GetRequrestParam {
     offset?: Integer;
     limit?: Integer;
-    relationType?: 'friend' | 'professional';
-    requestType?: 'sent' | 'received';
+    relationType?: 'FRIEND' | 'PROFESSIONAL';
+    requestType?: 'SENT' | 'RECEIVED';
 }
 
 interface GetRequestSuccessResponse {
@@ -94,12 +94,12 @@ interface OtherRequests extends Player {
 }
 interface DataContent {
     sent: { 
-        PROFESSIONAL: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
-        FRIEND: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+        professional: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+        friend: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
     },
     received: { 
-        PROFESSIONAL: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
-        FRIEND: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+        professional: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
+        friend: PlayerRequests | AgentRequests[] | CoachRequests[] | ScoutRequests[] | OtherRequests[];
     },
 }
 
