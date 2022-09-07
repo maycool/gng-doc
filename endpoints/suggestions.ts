@@ -1,4 +1,5 @@
 import {endpoint, request, response, body, headers, queryParams, Integer} from "@airtasker/spot";
+import {ListSuggestionsResponseSuccess, ListUsersResponseSuccess} from "./users/types";
 
 @endpoint({
     method: "GET",
@@ -54,10 +55,43 @@ interface GetSuggestionsHeaders {
 
 interface GetSuggestionsSuccessResponse{
     message: string;
-    data: GetSuggestionsData[];
+    data: ListSuggestionsResponseSuccess;
 }
 
 interface GetSuggestionsFailureResponse{
+    body: {
+        message: string;
+    };
+}
+
+
+
+
+@endpoint({
+    method: "POST",
+    path: "/users/{id}/ignore",
+    tags: ["Suggestions"]
+})
+class ignoreSuggestions {
+    @request
+    request(@headers headers: IgnoreUserHeaders) {}
+
+    @response({ status: 200 })
+    successResponse(@body body: IgnoreUserSuccessfulResponse) {}
+
+    @response({ status: 400 })
+    badRequestResponse(@body body: IgnoreUserFailureResponse) {}
+}
+
+interface IgnoreUserHeaders {
+    "Accept-Language":string
+}
+
+interface IgnoreUserSuccessfulResponse{
+    message: string;
+}
+
+interface IgnoreUserFailureResponse{
     body: {
         message: string;
     };
