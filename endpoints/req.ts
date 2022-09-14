@@ -2,7 +2,7 @@ import { endpoint, request, response, body, headers, queryParams, Integer } from
 import {Player, Agent, Coach, Scout, Other} from './users/types'
 @endpoint({
     method: "POST",
-    path: "/users/{toId}/requests/",
+    path: "/users/{toId}/request",
     tags: ["Requests"]
 })
 class CreateRequest {
